@@ -1,0 +1,9 @@
+Source: hashbash-backend
+Maintainer: nholuongut <luongutnho@hotmail.com>
+
+Package: hashbash-backend
+Priority: extra
+Architecture: any
+Depends: nginx
+Description: hashbash-backend
+  hashbash api and consumer instances

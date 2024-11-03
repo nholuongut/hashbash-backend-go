@@ -1,0 +1,71 @@
+version: "3.7"
+
+services:
+  hashbash-engine:
+    image: nholuongut/hashbash-consumers-go
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile-engine
+    depends_on:
+      - postgresql
+      - rabbitmq
+    entrypoint:
+      - bash
+      - -c
+      - >
+          /opt/scripts/wait-for-it rabbitmq:5672 -t 300
+          && /opt/scripts/wait-for-it postgresql:5432 -t 300
+          && /hashbash-engine
+    environment:
+      HASHBASH_DATABASE_ENGINE: postgresql
+      HASHBASH_DATABASE_HOST: postgresql
+      HASHBASH_DATABASE_SSL_MODE: disable
+      HASHBASH_DATABASE_USERNAME: postgres
+      HASHBASH_DATABASE_PASSWORD: postgres
+      HASHBASH_RABBITMQ_HOST: rabbitmq
+      HASHBASH_MANAGEMENT_ADDR: 0.0.0.0:23282
+    ports:
+      - published: 23282
+        target: 23282
+    volumes:
+      - type: bind
+        source: ../scripts
+        target: /opt/scripts
+        read_only: true
+
+  hashbash-webapp:
+    image: nholuongut/hashbash-webapp-go
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile-webapp
+    depends_on:
+      - postgresql
+      - rabbitmq
+    entrypoint:
+      - bash
+      - -c
+      - >
+          /opt/scripts/wait-for-it rabbitmq:5672 -t 300
+          && /opt/scripts/wait-for-it postgresql:5432 -t 300
+          && rm -f /run/hashbash/webapp.sock
+          && /hashbash-webapp
+    environment:
+      HASHBASH_DATABASE_ENGINE: postgresql
+      HASHBASH_DATABASE_HOST: postgresql
+      HASHBASH_DATABASE_SSL_MODE: disable
+      HASHBASH_DATABASE_USERNAME: postgres
+      HASHBASH_DATABASE_PASSWORD: postgres
+      HASHBASH_RABBITMQ_HOST: rabbitmq
+      HASHBASH_HTTP_SOCK: /run/hashbash/webapp.sock
+      HASHBASH_MANAGEMENT_ADDR: 0.0.0.0:23281
+    ports:
+      - published: 23281
+        target: 23281
+    volumes:
+      - type: bind
+        source: ../scripts
+        target: /opt/scripts
+        read_only: true
+      - type: volume
+        source: hashbash-sockets
+        target: /run/hashbash

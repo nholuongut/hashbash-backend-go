@@ -1,0 +1,4 @@
+frontend /etc/hashbash
+hashbash-cli /usr/bin
+hashbash-engine /usr/bin
+hashbash-webapp /usr/bin

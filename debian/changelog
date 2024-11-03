@@ -1,0 +1,141 @@
+hashbash-backend (2023.10.1) jammy; urgency=medium
+
+  * chore: Updates nginx image to 2023.10.0
+  * fix: Returns 404 on non-existant rainbow table
+
+ -- nholuongut <luongutnho@hotmail.com>  Mon, 16 Oct 2023 19:32:16 +0100
+
+hashbash-backend (2023.10.0) jammy; urgency=medium
+
+  * chore: no longer tag local images :current
+  * fix: Makes docker changes to accomodate nginx now access logging to journal
+  * chore: Updates to new non-deprecated amqp library, and to new version of rabbitmq-client-go for bugfixes
+
+ -- nholuongut <luongutnho@hotmail.com>  Wed, 11 Oct 2023 21:48:25 +0100
+
+hashbash-backend (2023.9.2) jammy; urgency=medium
+
+  * chore: Updates gorm version to work with newer versions of postgres. This also removes mysql support
+
+ -- nholuongut <luongutnho@hotmail.com>  Tue, 26 Sep 2023 01:27:44 +0100
+
+hashbash-backend (2023.9.1) jammy; urgency=medium
+
+  * chore: updates image versions from frontend repo
+  * chore: Removes no longer needed service and socket files
+
+ -- nholuongut <luongutnho@hotmail.com>  Tue, 26 Sep 2023 00:51:28 +0100
+
+hashbash-backend (2023.8.1) jammy; urgency=medium
+
+  * chore: updates docs to reflect new local run port
+  * feat: Passes additional version info and adds a server version endpoint
+
+ -- nholuongut <luongutnho@hotmail.com>  Sat, 05 Aug 2023 22:23:24 +0100
+
+hashbash-backend (2023.8.0) jammy; urgency=medium
+
+  * chore: testing release process
+
+ -- nholuongut <luongutnho@hotmail.com>  Sat, 05 Aug 2023 13:36:22 +0100
+
+hashbash-backend (23.0725.0) unstable; urgency=low
+
+  * fix: Fixes longstanding annoying UI bug where the content of the app bar wasn't centered vertically
+  * feat: Store the bytes of hashes as BYTEA in the database now, rather than hex encoded strings
+
+ -- nholuongut <luongutnho@hotmail.com>  Mon, 24 Jul 2023 17:49:42 +0100
+
+hashbash-backend (23.0724.0) unstable; urgency=low
+
+  * chore: Cleans up and modernizes docker configuration
+
+ -- nholuongut <luongutnho@hotmail.com>  Sun, 23 Jul 2023 22:10:47 +0100
+
+hashbash-backend (21.1027.0) unstable; urgency=low
+
+  * fix: adds runtime directory for socket
+
+ -- nholuongut <luongutnho@hotmail.com>  Wed, 27 Oct 2021 03:48:49 +0000
+
+hashbash-backend (21.1011.0) unstable; urgency=low
+
+  * feat: cleans up deb installation a bit moving files to more sensible places for hashbash
+
+ -- nholuongut <luongutnho@hotmail.com>  Mon, 11 Oct 2021 16:16:20 +0000
+
+hashbash-backend (21.1007.0) unstable; urgency=low
+
+  * fix: runs hashbash services under hashbash user
+
+ -- nholuongut <luongutnho@hotmail.com>  Wed, 6 Oct 2021 22:25:19 +0000
+
+hashbash-backend (21.0828.3) unstable; urgency=low
+
+  * fix: uses new http server logic in engine metrics server now
+
+ -- nholuongut <luongutnho@hotmail.com>  Sat, 28 Aug 2021 15:43:23 +0000
+
+hashbash-backend (21.0828.2) unstable; urgency=low
+
+  * fix: socket file descriptor names
+
+ -- nholuongut <luongutnho@hotmail.com>  Sat, 28 Aug 2021 14:50:04 +0000
+
+hashbash-backend (21.0828.1) unstable; urgency=low
+
+  * fix: install management sockets in deb as well
+  * fix: fixes pattern in changelog
+  * fix: systemd socket activation so names work
+
+ -- nholuongut <luongutnho@hotmail.com>  Sat, 28 Aug 2021 14:19:18 +0000
+
+hashbash-backend (21.0828.0) unstable; urgency=low
+
+  * feat: adds sockets for engine and webapp managment interfaces as well
+  * feat: adds systemd socket for the webapp to listen on
+  * feat: updates to new json logger
+  * feat: adds new CLI options to start servers on unix/systemd sockets and multiple tcp interfaces
+
+ -- nholuongut <luongutnho@hotmail.com>  Sat, 28 Aug 2021 00:52:06 +0000
+
+hashbash-backend (20.1218.0) unstable; urgency=low
+
+  * fix: fixes cli and webapp builds
+  * fix: fixes path to go executable
+  * fix: removes unnecessary file logging, updates systemd to redirect logs from stdout
+  * feat: actually handles database errors now and hopefully fixes the log file issues
+
+ -- nholuongut <luongutnho@hotmail.com>  Fri, 18 Dec 2020 18:27:54 +0000
+
+hashbash-backend (20.0119.0) unstable; urgency=low
+
+  * feat: updates to new rabbit client version so that vhost can be configured
+
+ -- nholuongut <luongutnho@hotmail.com>  Sun, 19 Jan 2020 14:46:28 +0000
+
+hashbash-backend (20.0105.0) unstable; urgency=low
+
+  * fix: fixes logging to a file for the hashbash-engine, logs webapp requests now
+
+ -- nholuongut <luongutnho@hotmail.com>  Sun, 5 Jan 2020 15:43:17 +0000
+
+hashbash-backend (20.0104.1) unstable; urgency=low
+
+  * feat: fixes services so they start eventually and adds frontend templates to deb
+
+ -- nholuongut <luongutnho@hotmail.com>  Sat, 4 Jan 2020 18:59:12 +0000
+
+hashbash-backend (20.0104.0) unstable; urgency=low
+
+  * feat: got local docker run working again and finalizes debian config
+  * fix: fixes last bugs with postgres switch, seems to work now
+  * feat: switches to postgres! Also adds database migrations to stand up the schema in postgres
+  * feat: makes app respond to log file environment variable
+
+ -- nholuongut <luongutnho@hotmail.com>  Sat, 4 Jan 2020 17:55:18 +0000
+
+hashbash-backend (19.1231.0) unstable; urgency=low
+
+ -- nholuongut <luongutnho@hotmail.com>  Tue, 31 Dec 2019 04:18:01 +0000
+
